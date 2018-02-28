@@ -8,6 +8,7 @@ class WeathersController < ApplicationController
     json = get_weather
     text = make_text json
     `say #{text}`
+    head :ok
   end
 
   private
