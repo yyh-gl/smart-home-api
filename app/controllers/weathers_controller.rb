@@ -5,8 +5,7 @@ class WeathersController < ApplicationController
   require 'json'
   
   def speak
-    json = get_weather
-    text = make_text json
+    text = get_weather
     `say #{text}`
     head :ok
   end
