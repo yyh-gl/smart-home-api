@@ -2,9 +2,12 @@
 class AlarmsController < ApplicationController
 
   def ring
-    stop if params[:time] == '0'
-    wake_up_time = params[:time].insert(-3, ':')
-    `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
+    if params[:time] == '0'
+      stop
+    else
+      wake_up_time = params[:time].insert(-3, ':')
+      `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
+    end
     head :ok
   end
 
