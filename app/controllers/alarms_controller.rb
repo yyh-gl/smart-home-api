@@ -2,12 +2,8 @@
 class AlarmsController < ApplicationController
 
   def ring
-    wake_up_time = params[:time].to_i
-    loop do
-      break if Time.now.strftime("%H%M").to_i >= wake_up_time
-      sleep 5
-    end
-    `/usr/bin/jsay.sh #{"起きろー。" * 10}`
+    wake_up_time = params[:time].insert(-3, ':')
+    `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
     head :ok
   end
   
