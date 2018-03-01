@@ -1,24 +1,12 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# スマートホーム化計画 〜API編〜
 
-Things you may want to cover:
+## API一覧
+| エンドポイント |           機能 |
+|:---------------|---------------:|
+| /weather       | 今日の天気予報 |
+| /alarm/:time   |       アラーム |
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 今後の予定
+- [雑談対話](https://dev.smt.docomo.ne.jp/?p=docs.api.index)に対応
