@@ -12,7 +12,7 @@ class AlarmsController < ApplicationController
       if params[:time].to_i >= Time.now.strftime("%H%M").to_i
         wake_up_date = today.strftime("%Y/%m/%d - %H:%M")
       else
-        wake_up_date = today.tomorrow.strftime("%Y/%m/%d - %H:%M")
+        wake_up_date = today.tomorrow.strftime("%Y/%m/%d - ") + wake_up_time
       end
       json_message = "set alarm at #{wake_up_date}"      
     end
