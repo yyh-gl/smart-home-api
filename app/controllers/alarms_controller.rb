@@ -10,7 +10,7 @@ class AlarmsController < ApplicationController
       wake_up_time = params[:time].insert(-3, ':')
       `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
       if params[:time].to_i >= Time.now.strftime("%H%M").to_i
-        wake_up_date = today.strftime("%Y/%m/%d - %H:%M")
+        wake_up_date = today.strftime("%Y/%m/%d - ") + wake_up_time
       else
         wake_up_date = today.tomorrow.strftime("%Y/%m/%d - ") + wake_up_time
       end
