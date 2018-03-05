@@ -5,23 +5,9 @@ class WeathersController < ApplicationController
   require 'json'
   
   def speak
-    text = get_weather
-    `say #{text}`
-    head :ok
-  end
-
-  private
-
-  def get_weather
-    uri = URI.parse('http://weather.livedoor.com/forecast/webservice/json/v1?city=260010')
-    json = Net::HTTP.get(uri)  
-    parsed_json = JSON.parse(json)
-    make_text parsed_json
-  end
-
-  def make_text parsed_json
-    text = "" + parsed_json['title'] + parsed_json['description']['text']
-    text.gsub(/(\r\n?|\n)/, "").gsub(/[\s ]/, "、")
+    `ruby /home/rasp-yyh/smart-home/WeatherForecast/weather.rb`
+    json_message = "start weather forecast"
+    json_response({message: json_message})
   end
 
 end
