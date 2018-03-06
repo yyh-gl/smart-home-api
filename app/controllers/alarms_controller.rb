@@ -16,14 +16,15 @@ class AlarmsController < ApplicationController
     else
       today = Time.current      
       if params[:time].to_i >= today.strftime("%H%M").to_i
-        wake_up_date = today.strftime("%Y/%m/%d - ")
+        wake_up_date = today.strftime("%Y-%m-%d ")
       else
-        wake_up_date = today.tomorrow.strftime("%Y/%m/%d - ")
+        wake_up_date = today.tomorrow.strftime("%Y-%m-%d ")
       end
       wake_up_time = params[:time].insert(-3, ':')
       `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
-       wake_up_date << wake_up_time
+      wake_up_date << wake_up_time
       json_message = "set alarm at #{wake_up_date}"
+      save_reservation_date(wake_up_date)
     end
     json_response({message: json_message})
   end
@@ -32,6 +33,10 @@ class AlarmsController < ApplicationController
   
   def stop
     `pidof /usr/bin/mpg321 | xargs kill -9`
+  end
+
+  def save_reservation_date(wake_up_date)
+    Alarm.create!(reservation_date: "#{wake_up_date}")
   end
   
 end
