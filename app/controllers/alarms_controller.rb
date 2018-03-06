@@ -1,6 +1,14 @@
 # coding: utf-8
 class AlarmsController < ApplicationController
 
+  # GET /alarms
+  def index
+    # 現在以降のアラーム予約日時のみ取得
+    @reservation_date = Alarm.where("reservation_date >= ?", Time.now)
+    json_response(@reservation_date)
+  end
+  
+  # GET /alarms/:time
   def ring
     if params[:time] == '0'
       stop
