@@ -30,6 +30,8 @@ module SmartHomeApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.active_record.default_timezone = :local
+    
     config.time_zone = 'Tokyo'
   end
 end
