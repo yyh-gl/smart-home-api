@@ -47,10 +47,10 @@ class AlarmsController < ApplicationController
     Alarm.where("reservation_date like '%" + wake_up_date + "%'").delete_all
   end
 
-  def get_wake_up_date(time)
-    wake_up_time = time.insert(-3, ':')
+  def get_wake_up_date(time_str)
+    wake_up_time = time_str.insert(-3, ':')
     today = Time.current
-    if time.to_i >= today.strftime("%H%M").to_i
+    if time_str.to_i >= today.strftime("%H%M").to_i
       return today.strftime("%Y-%m-%d ") << wake_up_time
     end
     return today.tomorrow.strftime("%Y-%m-%d ") << wake_up_time
