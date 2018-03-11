@@ -17,8 +17,8 @@ class AlarmsController < ApplicationController
       wake_up_date = get_wake_up_date(params[:time])
       save_reservation_date(wake_up_date)
       json_message = "set alarm at #{wake_up_date}"
-      #wake_up_time = params[:time].insert(-3, ':')
-      `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
+      # TODO: params[:time]'s name is OK?'
+      `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{params[:time]}`
     end
     json_response({message: json_message})
   end
