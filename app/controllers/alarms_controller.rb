@@ -28,8 +28,7 @@ class AlarmsController < ApplicationController
     wake_up_date = get_wake_up_date(params[:time])
     delete_reservation_date(wake_up_date)
     json_message = "delete alarm at #{wake_up_date}"
-    delete_time = params[:time].insert(-3, ':')
-    `at -l | grep #{delete_time} | awk '{print $1}' | xargs at -d`
+    `at -l | grep #{params[:time]} | awk '{print $1}' | xargs at -d`
     json_response({message: json_message})
   end
 
