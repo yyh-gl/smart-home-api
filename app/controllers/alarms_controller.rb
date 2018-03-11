@@ -14,7 +14,7 @@ class AlarmsController < ApplicationController
       stop
       json_message = "stop alarm"
     else
-      wake_up_date = get_wake_up_date(params[:time].to_i)
+      wake_up_date = get_wake_up_date(params[:time])
       wake_up_time = params[:time].insert(-3, ':')
       `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{wake_up_time}`
       json_message = "set alarm at #{wake_up_date}"
@@ -25,7 +25,7 @@ class AlarmsController < ApplicationController
 
   # DELETE /alarms/:time
   def delete
-    wake_up_date = get_wake_up_date(params[:time].to_i)
+    wake_up_date = get_wake_up_date(params[:time])
     delete_reservation_date(wake_up_date)
     delete_time = params[:time].insert(-3, ':')
     `at -l | grep #{delete_time} | awk '{print $1}' | xargs at -d`
@@ -48,9 +48,9 @@ class AlarmsController < ApplicationController
   end
 
   def get_wake_up_date(time)
-    wake_up_time = time.to_s.insert(-3, ':')
+    wake_up_time = time.insert(-3, ':')
     today = Time.current
-    if time >= today.strftime("%H%M").to_i
+    if time.to_i >= today.strftime("%H%M").to_i
       return today.strftime("%Y-%m-%d ") << wake_up_time
     end
     return today.tomorrow.strftime("%Y-%m-%d ") << wake_up_time
