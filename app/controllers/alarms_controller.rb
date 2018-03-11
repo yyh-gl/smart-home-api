@@ -29,6 +29,12 @@ class AlarmsController < ApplicationController
     json_response({message: json_message})
   end
 
+  # DELETE /alarms/:time
+  def delete
+    delete_date = params[:time].insert(-3, ':')
+    `at -l | grep #{delete_date} | awk '{print $1}' | xargs at -d`
+  end
+
   private
   
   def stop
