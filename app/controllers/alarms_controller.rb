@@ -47,9 +47,10 @@ class AlarmsController < ApplicationController
   end
 
   def get_wake_up_date(time)
+    int_time = time.to_i
     wake_up_time = time.insert(-3, ':')
     today = Time.current
-    if time.to_i >= today.strftime("%H%M").to_i
+    if int_time >= today.strftime("%H%M").to_i
       return today.strftime("%Y-%m-%d ") << wake_up_time
     end
     return today.tomorrow.strftime("%Y-%m-%d ") << wake_up_time
