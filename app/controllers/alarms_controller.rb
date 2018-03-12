@@ -21,6 +21,8 @@ class AlarmsController < ApplicationController
       puts "--------------"
       puts @wake_up_time
       puts "--------------"
+      puts params[:time]
+      puts "--------------"
       puts @wake_up_datetime
       puts "--------------"
     end
