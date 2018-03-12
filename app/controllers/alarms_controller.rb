@@ -50,22 +50,9 @@ class AlarmsController < ApplicationController
     today = Time.current
     if params[:time].to_i >= today.strftime("%H%M").to_i
       @wake_up_datetime = today.strftime("%Y-%m-%d ") << @wake_up_time
-      puts "-------1------"
-      puts @wake_up_time
-      puts "--------------"
-      puts params[:time]
-      puts "--------------"
-      puts @wake_up_datetime
-      puts "--------------"
+    else
+      @wake_up_datetime = today.tomorrow.strftime("%Y-%m-%d ") << @wake_up_time
     end
-    puts "-------2------"
-    puts @wake_up_time
-    puts "--------------"
-    puts params[:time]
-    puts "--------------"
-    puts @wake_up_datetime
-    puts "--------------"
-    @wake_up_datetime = today.tomorrow.strftime("%Y-%m-%d ") << @wake_up_time
   end
 
 end
