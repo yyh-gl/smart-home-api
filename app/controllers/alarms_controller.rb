@@ -16,7 +16,7 @@ class AlarmsController < ApplicationController
       json_message = "stop alarm"
     else
       `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{@wake_up_time}`
-      save_reservation_date(@wake_up_datetime)
+      save_reservation_datetime(@wake_up_datetime)
       json_message = "set alarm at #{@wake_up_datetime}"
     end
     json_response({message: json_message})
@@ -24,7 +24,7 @@ class AlarmsController < ApplicationController
 
   # DELETE /alarms/:time
   def delete
-    delete_reservation_date(@wake_up_datetime)
+    delete_reservation_datetime(@wake_up_datetime)
     json_message = "delete alarm at #{@wake_up_datetime}"
     `at -l | grep #{@wake_up_time} | awk '{print $1}' | xargs at -d`
     json_response({message: json_message})
@@ -36,11 +36,11 @@ class AlarmsController < ApplicationController
     `pidof /usr/bin/mpg321 | xargs kill -9`
   end
 
-  def save_reservation_date(reservation_datetime)
+  def save_reservation_datetime(reservation_datetime)
     Alarm.create!(reservation_date: "#{reservation_datetime}")
   end
 
-  def delete_reservation_date(reservation_datetime)
+  def delete_reservation_datetime(reservation_datetime)
     Alarm.where("reservation_date like '%" + reservation_datetime + "%'").delete_all
   end
 
