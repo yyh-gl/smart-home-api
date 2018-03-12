@@ -18,6 +18,11 @@ class AlarmsController < ApplicationController
       `/home/rasp-yyh/smart-home/Alarm/alarm.sh #{@wake_up_time}`
       save_reservation_date(@wake_up_datetime)
       json_message = "set alarm at #{@wake_up_datetime}"
+      puts "--------------"
+      puts @wake_up_time
+      puts "--------------"
+      puts @wake_up_datetime
+      puts "--------------"
     end
     json_response({message: json_message})
   end
