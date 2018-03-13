@@ -45,6 +45,7 @@ class AlarmsController < ApplicationController
   end
 
   def get_reservation_datetime
+    return if params[:time] == '0'
     @wake_up_time = params[:time].clone
     @wake_up_time.insert(-3, ':')
     today = Time.current
