@@ -18,3 +18,7 @@
 -> アラーム時に今日のタスクを読み上げる機能
 
 - アラーム音の選択機能
+
+
+## 参照
+[smart-home-app](https://github.com/yyh-gl/smart-home-app)
