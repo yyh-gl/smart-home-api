@@ -51,6 +51,7 @@ cmake-build-release/
 
 ## File-based project format:
 *.iws
+./idea/*.iml
 
 ## Plugin-specific files:
 
