@@ -25,8 +25,8 @@ class AlarmsController < ApplicationController
   # DELETE /alarms/:time
   def delete
     delete_reservation_datetime(@wake_up_datetime)
-    json_message = "delete alarm at #{@wake_up_datetime}"
     `at -l | grep #{@wake_up_time} | awk '{print $1}' | xargs at -d`
+    json_message = "delete alarm at #{@wake_up_datetime}"
     json_response({message: json_message})
   end
 
