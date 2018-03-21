@@ -22,6 +22,10 @@
 
 - TV操作
 
+- 環境モニタリング
+  - 温度
+  - 湿度
+
 
 ## 参照
 [smart-home-app](https://github.com/yyh-gl/smart-home-app)
