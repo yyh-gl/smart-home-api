@@ -5,6 +5,7 @@ class AlarmsController < ApplicationController
   # GET /alarms
   def index
     # 現在以降のアラーム予約日時のみ取得
+    # TODO: 時間だけで取ると明日の同時間の予約が取得できないので、時間だけでなく日時で予約を取得できるように修正する
     @reservation_date = Alarm.where("reservation_date >= ?", Time.now)
     json_response(@reservation_date)
   end
